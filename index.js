@@ -31,6 +31,24 @@ let movies = [
   }
 ];
 
+// Mobile menu functionality
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const navWrapper = document.querySelector('.nav-wrapper');
+
+hamburgerMenu.addEventListener('click', () => {
+  navWrapper.classList.toggle('active');
+  document.body.style.overflow = navWrapper.classList.contains('active') ? 'hidden' : 'auto';
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!hamburgerMenu.contains(e.target) && !navWrapper.contains(e.target) && navWrapper.classList.contains('active')) {
+    navWrapper.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Existing carousel functionality
 const carousel = document.querySelector(".carousel");
 let sliders = [];
 
@@ -41,7 +59,6 @@ const createSlide = () => {
     slideIndex = 0;
   }
 
-  /* creating DOM element */
   let slide = document.createElement("div");
   let imgElement = document.createElement("img");
   let content = document.createElement("div");
@@ -87,8 +104,7 @@ setInterval(() => {
   createSlide();
 }, 3000);
 
-/* video cards */
-
+// Video cards
 const videoCards = [...document.querySelectorAll(".video-card")];
 
 videoCards.forEach((item) => {
@@ -102,8 +118,7 @@ videoCards.forEach((item) => {
   });
 });
 
-/* card sliders */
-
+// Card sliders
 let cardContainers = [...document.querySelectorAll(".card-container")];
 let preBtns = [...document.querySelectorAll(".pre-btn")];
 let nxtBtns = [...document.querySelectorAll(".nxt-btn")];
@@ -121,6 +136,7 @@ cardContainers.forEach((item, i) => {
   });
 });
 
+// Modal functionality
 const modal = document.querySelector(".modal");
 const loginBtn = document.querySelector(".login-link");
 const closeBtn = document.querySelector(".close");
